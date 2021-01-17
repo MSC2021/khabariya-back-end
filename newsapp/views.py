@@ -14,13 +14,13 @@ class NewsAppViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = NewsSerializer
     lookup_field = 'title'
     def get_queryset(self):
-        queryset = NewsArticle.objects.all()
+        queryset = NewsArticle.objects.all().order_by('-timestamp')
         category = self.request.query_params.get('category', None)
         search_value = self.request.query_params.get('search', None)
         if category is not None:
-            queryset = queryset.filter(category__title=category)
+            queryset = queryset.filter(category__title=category).order_by('-timestamp')
         if search_value is not None:
-            queryset = queryset.filter(title__icontains=search_value)
+            queryset = queryset.filter(title__icontains=search_value).order_by('-timestamp')
         return queryset
 
 class VideoLinkView(generics.ListCreateAPIView):

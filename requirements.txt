@@ -3,6 +3,7 @@ dj-database-url==0.5.0
 dj-static==0.0.6
 Django==3.1.5
 django-better-admin-arrayfield==1.4.2
+django-cors-headers==3.6.0
 django-heroku==0.3.1
 djangorestframework==3.12.2
 Pillow==8.1.0
