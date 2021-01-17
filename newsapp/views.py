@@ -1,8 +1,6 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from rest_framework.views import APIView
-from django.http import Http404
-from rest_framework.response import Response
+from rest_framework import generics
 from .models import *
 from .serializers import *
 # Create your views here.
@@ -14,7 +12,7 @@ class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
 class NewsAppViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = NewsArticle.objects.all()
     serializer_class = NewsSerializer
-
+    lookup_field = 'title'
     def get_queryset(self):
         queryset = NewsArticle.objects.all()
         category = self.request.query_params.get('category', None)
@@ -24,3 +22,7 @@ class NewsAppViewSet(viewsets.ReadOnlyModelViewSet):
         if search_value is not None:
             queryset = queryset.filter(title__icontains=search_value)
         return queryset
+
+class VideoLinkView(generics.ListCreateAPIView):
+    queryset = NewsArticle.objects.all().exclude(youtube_link="")
+    serializer_class = VideoLinkSerializer

@@ -4,11 +4,17 @@ from rest_framework import serializers
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ['title',]
+        fields = '__all__'
 
 class NewsSerializer(serializers.HyperlinkedModelSerializer):
     category = CategorySerializer(read_only=True, many=True)
     class Meta:
         model = NewsArticle
-        fields = ['title','category','youtube_link','images','paragraph']
+        fields = ['id','title','category','paragraph',"images"]
+        lookup_field = 'title'
+
+class VideoLinkSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = NewsArticle
+        fields = ['title','youtube_link']
         lookup_field = 'title'

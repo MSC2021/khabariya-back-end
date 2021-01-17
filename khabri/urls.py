@@ -19,10 +19,11 @@ from rest_framework.routers import DefaultRouter
 from newsapp.views import *
 
 router = DefaultRouter()
-router.register(r'users', CategoryViewSet, basename='category')
+router.register(r'category', CategoryViewSet, basename='category')
 router.register(r'news', NewsAppViewSet, basename='news')
 urlpatterns = router.urls
 
 urlpatterns += [
     path('admin/', admin.site.urls),
+    path('videos/',VideoLinkView.as_view())
 ]

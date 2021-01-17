@@ -8,6 +8,7 @@ from django_better_admin_arrayfield.forms.widgets import DynamicArrayTextareaWid
 # Register your models here.
 class MyNewsAdmin(admin.ModelAdmin, DynamicArrayMixin):
     filter_horizontal =('category',)
+    readonly_fields = ('timestamp',)
     def get_fields(self,request,obj=None):
         if request.user.is_superuser:
             fields = ['title','paragraph','category','images','youtube_link','publish']
