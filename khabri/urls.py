@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls.static import static
 from rest_framework.routers import DefaultRouter
 from newsapp.views import *
+from .import settings
 
 router = DefaultRouter()
 router.register(r'category', CategoryViewSet, basename='category')
@@ -26,4 +28,4 @@ urlpatterns = router.urls
 urlpatterns += [
     path('admin/', admin.site.urls),
     path('videos/',VideoLinkView.as_view())
-]
+]+static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
