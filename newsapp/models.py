@@ -18,10 +18,9 @@ class NewsArticle(models.Model):
     docstring
     """
     title = models.CharField(max_length=200,verbose_name='शीर्षक')
-    paragraph = ArrayField(models.TextField(),verbose_name ='विवरण')
+    paragraph = models.TextField(verbose_name ='विवरण')
     category = models.ManyToManyField(Category,verbose_name='वर्ग')
-    images = models.ImageField(upload_to='images', blank=True,null=True)
-    youtube_link = models.URLField(blank=True)
+    youtube_link = ArrayField(models.URLField(blank=True))
     publish = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now=True)
     def __str__(self):
@@ -29,3 +28,12 @@ class NewsArticle(models.Model):
     class Meta:
         verbose_name = ("समाचार")
         verbose_name_plural = ("समाचार")
+
+class ImagesModel(models.Model):
+    newsArticle = models.ForeignKey(NewsArticle,on_delete=models.PROTECT)
+    image = models.ImageField(upload_to='images', blank=True,null=True)
+    def __str__(self):
+        return self.newsArticle.title
+    class Meta:
+        verbose_name = ("समाचार तस्वीर")
+        verbose_name_plural = ("समाचार तस्वीर")
