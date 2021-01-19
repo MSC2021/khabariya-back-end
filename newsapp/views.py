@@ -25,5 +25,5 @@ class NewsAppViewSet(viewsets.ReadOnlyModelViewSet):
         return queryset
 
 class VideoLinkView(generics.ListCreateAPIView):
-    queryset = NewsArticle.objects.all().exclude(youtube_link="")
+    queryset = NewsArticle.objects.all().exclude(youtube_link=[])
     serializer_class = VideoLinkSerializer
