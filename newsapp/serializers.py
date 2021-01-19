@@ -25,7 +25,6 @@ class NewsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = NewsArticle
         fields = ['id','title','category','paragraph','timestamp','youtube_link','images']
-        lookup_field = 'title'
 
 class VideoLinkSerializer(serializers.ModelSerializer):
     class Meta:

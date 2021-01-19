@@ -13,7 +13,7 @@ class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
 class NewsAppViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = NewsArticle.objects.all()
     serializer_class = NewsSerializer
-    lookup_field = 'title'
+    
     def get_queryset(self):
         queryset = NewsArticle.objects.filter(publish=True).order_by('-timestamp')
         category = self.request.query_params.get('category', None)
