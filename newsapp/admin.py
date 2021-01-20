@@ -5,8 +5,10 @@ from .models import *
 from django_better_admin_arrayfield.admin.mixins import DynamicArrayMixin
 from django_better_admin_arrayfield.forms.widgets import DynamicArrayTextareaWidget
 from django.forms import TextInput, Textarea
+from .forms import *
 # Register your models here.
 class MyNewsAdmin(admin.ModelAdmin, DynamicArrayMixin):
+    form = NewsForm
     filter_horizontal =('category',)
     readonly_fields = ('timestamp',)
     formfield_overrides = {
@@ -24,3 +26,5 @@ admin.site.register(NewsArticle,MyNewsAdmin)
 admin.site.register(ImagesModel)
 admin.site.register(Category)
 admin.site.register(Marque)
+admin.site.site_header = "Khabariya Panel"
+admin.site.site_title = "Khabariya "
