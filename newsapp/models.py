@@ -37,3 +37,7 @@ class ImagesModel(models.Model):
     class Meta:
         verbose_name = ("समाचार तस्वीर")
         verbose_name_plural = ("समाचार तस्वीर")
+
+class Marque(models.Model):
+    title = models.CharField(max_length =100)
+        

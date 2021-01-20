@@ -23,6 +23,7 @@ from .import settings
 router = DefaultRouter()
 router.register(r'category', CategoryViewSet, basename='category')
 router.register(r'news', NewsAppViewSet, basename='news')
+router.register(r'marque',MarqueViewSet,basename='marque')
 urlpatterns = router.urls
 
 urlpatterns += [

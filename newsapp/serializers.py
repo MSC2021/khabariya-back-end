@@ -32,4 +32,8 @@ class VideoLinkSerializer(serializers.ModelSerializer):
         fields = ['id','title','youtube_link']
         lookup_field = 'title'
 
-
+class MarqueSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Marque
+        fields = '__all__'
+  

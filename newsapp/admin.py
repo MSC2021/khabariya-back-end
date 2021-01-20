@@ -23,3 +23,4 @@ class MyNewsAdmin(admin.ModelAdmin, DynamicArrayMixin):
 admin.site.register(NewsArticle,MyNewsAdmin)
 admin.site.register(ImagesModel)
 admin.site.register(Category)
+admin.site.register(Marque)

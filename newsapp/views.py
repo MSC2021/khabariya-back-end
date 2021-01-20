@@ -9,6 +9,10 @@ class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     lookup_field = 'title'
+
+class MarqueViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Marque.objects.all()
+    serializer_class = MarqueSerializer
     
 class NewsAppViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = NewsArticle.objects.all()
