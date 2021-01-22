@@ -28,5 +28,6 @@ urlpatterns = router.urls
 
 urlpatterns += [
     path('admin/', admin.site.urls),
-    path('videos/',VideoLinkView.as_view())
+    path('videos/',VideoLinkView.as_view()),
+    path('preview/<id>/',PreviewView,name='preview')
 ]+static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)

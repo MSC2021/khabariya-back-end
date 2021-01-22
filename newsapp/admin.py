@@ -6,6 +6,7 @@ from django_better_admin_arrayfield.admin.mixins import DynamicArrayMixin
 from django_better_admin_arrayfield.forms.widgets import DynamicArrayTextareaWidget
 from django.forms import TextInput, Textarea
 from .forms import *
+from django.utils.safestring import mark_safe
 # Register your models here.
 class MyNewsAdmin(admin.ModelAdmin, DynamicArrayMixin):
     form = NewsForm
@@ -15,9 +16,17 @@ class MyNewsAdmin(admin.ModelAdmin, DynamicArrayMixin):
         # models.CharField: {'widget': TextInput(attrs={'size':'40'})},
         models.TextField: {'widget': Textarea(attrs={'rows':20, 'cols':150})},
     }
+    def get_absolute_url(self):
+        return "/preview/%i/" % 1
+
+    def preview_template(self,obj):
+        return mark_safe("<a href='/preview/%d/' target='_blank'>View</a>" % obj.id)
+    preview_template.short_description = 'Preview'
+    list_display = ('title','preview_template','timestamp')
+   
     def get_fields(self,request,obj=None):
         if request.user.is_superuser:
-            fields = ['title','paragraph','category','youtube_link','publish']
+            fields = ['title','paragraph','category','youtube_link','publish',]
         else:
             fields = ['title','paragraph','category','youtube_link',]
         return fields
