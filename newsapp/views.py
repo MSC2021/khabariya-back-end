@@ -3,6 +3,7 @@ from rest_framework import viewsets
 from rest_framework import generics
 from .models import *
 from .serializers import *
+from urllib.parse import unquote
 # Create your views here.
 
 class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
@@ -21,7 +22,7 @@ class NewsAppViewSet(viewsets.ReadOnlyModelViewSet):
     def get_queryset(self):
         queryset = NewsArticle.objects.filter(publish=True).order_by('-timestamp')
         category = self.request.query_params.get('category', None)
-        search_value = self.request.query_params.get('search', None)
+        search_value = unquote(self.request.query_params.get('search', None))[:-1]
         if category is not None:
             queryset = queryset.filter(category__title=category).order_by('-timestamp')
         if search_value is not None:
