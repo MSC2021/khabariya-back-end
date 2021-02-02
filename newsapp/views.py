@@ -22,10 +22,10 @@ class NewsAppViewSet(viewsets.ReadOnlyModelViewSet):
     def get_queryset(self):
         queryset = NewsArticle.objects.filter(publish=True).order_by('-timestamp')
         category = self.request.query_params.get('category', None)
-        search_value = unquote(self.request.query_params.get('search', None))[:-1]
+        search_value = unquote(self.request.query_params.get('search', ''))[:-1]
         if category is not None:
             queryset = queryset.filter(category__title=category).order_by('-timestamp')
-        if search_value is not None:
+        if search_value!='':
             queryset = queryset.filter(title__icontains=search_value).order_by('-timestamp')
         return queryset
 
