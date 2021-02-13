@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'dbbackup_ui',
     'django_better_admin_arrayfield',
     'corsheaders',
     'rest_framework',
@@ -127,3 +128,9 @@ USE_L10N = True
 USE_TZ = True
 django_heroku.settings(locals())
 CORS_ORIGIN_ALLOW_ALL = True # If this is used then `CORS_ORIGIN_WHITELIST` will not have any effect
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_HOST_USER = 'hibirdassociate@gmail.com'
+EMAIL_HOST_PASSWORD = 'pjmfngmmyldxocmj'
+EMAIL_USE_TLS = True

@@ -22,16 +22,25 @@ class NewsAppViewSet(viewsets.ReadOnlyModelViewSet):
     def get_queryset(self):
         queryset = NewsArticle.objects.filter(publish=True).order_by('-timestamp')
         category = self.request.query_params.get('category', None)
-        search_value = unquote(self.request.query_params.get('search', ''))[:-1]
+        search_value = unquote(self.request.query_params.get('search', ''))[:]
         if category is not None:
             queryset = queryset.filter(category__title=category).order_by('-timestamp')
         if search_value!='':
-            queryset = queryset.filter(title__icontains=search_value).order_by('-timestamp')
+            queryset = queryset.filter(title__icontains=search_value) | queryset.filter(key_words__title__icontains=search_value) | queryset.filter(category__title=search_value)
+            queryset = queryset.distinct().order_by('-timestamp')
         return queryset
 
 class VideoLinkView(generics.ListCreateAPIView):
     queryset = NewsArticle.objects.all().exclude(youtube_link=[])
     serializer_class = VideoLinkSerializer
+
+class VideoNewsView(generics.ListCreateAPIView):
+    queryset = VideoNews.objects.all()
+    serializer_class = VideoNewsSerializer
+
+class AdvertismentView(generics.ListCreateAPIView):
+    queryset = Advertisment.objects.all()
+    serializer_class = AdvertismentSeializer
 
 def PreviewView(request,id):
     try:
