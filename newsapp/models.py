@@ -19,7 +19,7 @@ class Category(models.Model):
 
 class ImagesModel(models.Model):
     # newsArticle = models.ForeignKey(NewsArticle,on_delete=models.PROTECT)
-    image = models.ImageField(upload_to='images', blank=True,null=True)
+    image = models.ImageField(upload_to='images')
     def __str__(self):
         return str(self.image)
     class Meta:

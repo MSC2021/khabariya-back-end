@@ -53,7 +53,7 @@ def PreviewView(request,id):
     try:
         news = NewsArticle.objects.get(id=id)
         category = news.category.all()
-        image = ImagesModel.objects.filter(newsArticle=id)
+        image = news.images.all()
     except:
         return render(request,'preview.html',{'error':'No Object Found'})
     return render(request,'preview.html',{'news':news,'category':category,'image':image})

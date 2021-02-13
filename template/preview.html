@@ -137,20 +137,19 @@
         }
 
         .extra-image {
+            border: 1px solid #3b3b3b;
             width: 300px;
+            border-radius: 4px;
             height: 300px;
         }
 
+        /* 
         .extra-image img {
-            width: 100%;
+            width: 60vw;
             height: 100%;
-        }
+        } */
 
         @media screen and (max-width: 800px) {
-            .topics-container {
-                grid-template-columns: 1fr 1fr;
-            }
-
             .rel-vd-container {
                 /* border: 2px solid rebeccapurple; */
                 flex-direction: column;
@@ -229,7 +228,10 @@
                 <div class="container grey-wrapper"></div>
                 <h3 style='margin-top:"1rem";'>Related images</h3>
                 {% for images in image%}
-                <img style="border:1px solid black;" src='/media/{{images.image}}' alt="">
+                <div className="extra-image">
+                    <br>
+                    <img style="border:1px solid black;" width="80%" src='/media/{{images.image}}' alt="">
+                </div>
                 {% endfor %}
 
             </div>
