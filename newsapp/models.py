@@ -9,6 +9,7 @@ class Category(models.Model):
     title = models.CharField(max_length=30)
     visible = models.BooleanField(default = True)
     important = models.BooleanField(default = False)
+    timestamp = models.DateTimeField(auto_now=True,blank=True,null=True)
 
     def __str__(self):
         return self.title
@@ -54,7 +55,8 @@ class NewsArticle(models.Model):
 
 class Marque(models.Model):
     title = models.CharField(max_length =100)
-    
+    timestamp = models.DateTimeField(auto_now=True,blank=True,null=True)
+
     def __str__(self):
         return self.title
     class Meta:
@@ -64,6 +66,7 @@ class Marque(models.Model):
 class VideoNews(models.Model):
     title = models.CharField(max_length=200,verbose_name='शीर्षक')
     youtube_link = models.URLField()
+    timestamp = models.DateTimeField(auto_now=True,blank=True,null=True)
 
     def __str__(self):
         return self.title
@@ -76,6 +79,7 @@ class Advertisment(models.Model):
     paragraph = models.TextField(verbose_name ='विवरण')
     youtube_link = ArrayField(models.URLField(),blank=True,null=True)
     image = models.ImageField(upload_to='images', blank=True,null=True)
+    timestamp = models.DateTimeField(auto_now=True,blank=True,null=True)
 
     def __str__(self):
         return self.title

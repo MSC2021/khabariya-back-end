@@ -36,7 +36,7 @@ urlpatterns += [
     path('password_reset/',auth_views.PasswordResetView.as_view(template_name='login.html',success_url = '/login/?success=Password reset link sent to your given email id'),name='change_password'),
     path('admin/', admin.site.urls),
     path('videos/',VideoLinkView.as_view()),
-    path('videonews/',VideoNewsView.as_view()),
+    # path('videonews/',VideoNewsView.as_view()),
     path('sliderads/',AdvertismentView.as_view()),
     path('preview/<id>/',PreviewView,name='preview')
 ]+static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)

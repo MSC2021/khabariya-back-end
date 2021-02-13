@@ -35,12 +35,16 @@ class MyNewsAdmin(admin.ModelAdmin, DynamicArrayMixin):
 
 class AdvertisementAdmin(admin.ModelAdmin,DynamicArrayMixin):
     search_fields = ('title',)
+    readonly_fields = ('timestamp',)
+    list_display = ('title','timestamp',)
     formfield_overrides = {
         # models.CharField: {'widget': TextInput(attrs={'size':'40'})},
         models.TextField: {'widget': Textarea(attrs={'rows':20, 'cols':150})},
     }
 class CategryAdmin(admin.ModelAdmin):
     search_fields = ('title',)
+    readonly_fields = ('timestamp',)
+    list_display = ('title','timestamp',)
     list_filter = ('visible','important',)
     
 admin.site.register(NewsArticle,MyNewsAdmin)

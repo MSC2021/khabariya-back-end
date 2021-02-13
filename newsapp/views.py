@@ -1,18 +1,18 @@
 from django.shortcuts import render
-from rest_framework import viewsets
-from rest_framework import generics
+from rest_framework import viewsets,generics
+from rest_framework.response import Response
 from .models import *
 from .serializers import *
 from urllib.parse import unquote
 # Create your views here.
 
 class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Category.objects.all()
+    queryset = Category.objects.all().order_by('-timestamp')
     serializer_class = CategorySerializer
     lookup_field = 'title'
 
 class MarqueViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Marque.objects.all()
+    queryset = Marque.objects.all().order_by('-timestamp')
     serializer_class = MarqueSerializer
     
 class NewsAppViewSet(viewsets.ReadOnlyModelViewSet):
@@ -31,16 +31,23 @@ class NewsAppViewSet(viewsets.ReadOnlyModelViewSet):
         return queryset
 
 class VideoLinkView(generics.ListCreateAPIView):
-    queryset = NewsArticle.objects.all().exclude(youtube_link=[])
+    queryset = NewsArticle.objects.all().exclude(youtube_link=[]).order_by('-timestamp')
     serializer_class = VideoLinkSerializer
 
-class VideoNewsView(generics.ListCreateAPIView):
-    queryset = VideoNews.objects.all()
-    serializer_class = VideoNewsSerializer
+    def list(self, request, *args, **kwargs):
+        result1 = self.serializer_class(self.get_queryset(),many=True)
+        result2 = VideoNewsSerializer(VideoNews.objects.all().order_by('-timestamp'),many=True)
+        return Response(result2.data+result1.data)
+        
+# class VideoNewsView(generics.ListCreateAPIView):
+#     queryset = VideoNews.objects.all()
+#     serializer_class = VideoNewsSerializer
+#     def list(self, request, *args, **kwargs):
+#         return super().list(request, *args, **kwargs)
 
 class AdvertismentView(generics.ListCreateAPIView):
-    queryset = Advertisment.objects.all()
-    serializer_class = AdvertismentSeializer
+    queryset = Advertisment.objects.all().order_by('-timestamp')
+    serializer_class = AdvertismentSerializer
 
 def PreviewView(request,id):
     try:

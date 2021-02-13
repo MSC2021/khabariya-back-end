@@ -53,7 +53,7 @@ class MarqueSerializer(serializers.ModelSerializer):
         model = Marque
         fields = '__all__'
 
-class AdvertismentSeializer(serializers.ModelSerializer):
+class AdvertismentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Advertisment
         fields = '__all__'
