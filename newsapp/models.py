@@ -95,6 +95,13 @@ class Career(models.Model):
     location = models.CharField(max_length = 200)
     resume = models.FileField(blank=True,null=True)
 
+    def save(self, *args, **kwargs):
+        created = self.pk is None
+        super().save(*args, **kwargs)
+        if created:
+            if self.email:
+                send_mail('Thanks For Applying ,'+self.name+' we will contact you shortly.','chinmay123456789@gmail.com',[self.email,])
+
     def __str__(self):
         return self.name
     
