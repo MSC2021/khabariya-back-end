@@ -12,11 +12,12 @@ class MyNewsAdmin(admin.ModelAdmin, DynamicArrayMixin):
     form = NewsForm
     search_fields = ('title',)
     list_filter = ('publish','category',)
-    filter_horizontal =('category',)
+    filter_horizontal =('category','images')
     readonly_fields = ('timestamp',)
     formfield_overrides = {
         # models.CharField: {'widget': TextInput(attrs={'size':'40'})},
         models.TextField: {'widget': Textarea(attrs={'rows':20, 'cols':150})},
+        # models.ManyToManyField : {'widget'}
     }
     def get_absolute_url(self):
         return "/preview/%i/" % 1
