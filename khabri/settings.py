@@ -132,6 +132,6 @@ CORS_ORIGIN_ALLOW_ALL = True # If this is used then `CORS_ORIGIN_WHITELIST` will
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
-EMAIL_HOST_USER = 'hibirdassociate@gmail.com'
-EMAIL_HOST_PASSWORD = 'pjmfngmmyldxocmj'
+EMAIL_HOST_USER = 'mscgroup98@gmail.com'
+EMAIL_HOST_PASSWORD = 'iepgbnadtlrcliqk'
 EMAIL_USE_TLS = True
