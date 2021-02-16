@@ -100,7 +100,7 @@ class Career(models.Model):
         super().save(*args, **kwargs)
         if created:
             if self.email:
-                send_mail('Thanks For Applying ,'+self.name+' we will contact you shortly.','chinmay123456789@gmail.com',[self.email,])
+                send_mail('Thanks For Applying in Khabariya','Dear '+self.name+' thanks for applying we will contact you shortly.','chinmay123456789@gmail.com',[self.email,])
 
     def __str__(self):
         return self.name
