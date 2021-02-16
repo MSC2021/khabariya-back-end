@@ -25,6 +25,7 @@ router = DefaultRouter()
 router.register(r'category', CategoryViewSet, basename='category')
 router.register(r'news', NewsAppViewSet, basename='news')
 router.register(r'marque',MarqueViewSet,basename='marque')
+router.register(r'sliderads',AdvertismentView,basename='ads')
 urlpatterns = router.urls
 
 urlpatterns += [
@@ -37,6 +38,5 @@ urlpatterns += [
     path('admin/', admin.site.urls),
     path('videos/',VideoLinkView.as_view()),
     path('career/',CareerView.as_view()),
-    path('sliderads/',AdvertismentView.as_view()),
     path('preview/<id>/',PreviewView,name='preview')
 ]+static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)

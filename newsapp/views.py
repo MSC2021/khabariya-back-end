@@ -45,7 +45,7 @@ class VideoLinkView(generics.ListCreateAPIView):
 #     def list(self, request, *args, **kwargs):
 #         return super().list(request, *args, **kwargs)
 
-class AdvertismentView(generics.ListCreateAPIView):
+class AdvertismentView(viewsets.ReadOnlyModelViewSet):
     queryset = Advertisment.objects.all().order_by('-timestamp')
     serializer_class = AdvertismentSerializer
 
