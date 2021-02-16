@@ -19,7 +19,7 @@ class Category(models.Model):
 
 class ImagesModel(models.Model):
     # newsArticle = models.ForeignKey(NewsArticle,on_delete=models.PROTECT)
-    image = models.ImageField(upload_to='images')
+    image = models.ImageField(upload_to='images',default='image.jpg')
     def __str__(self):
         return str(self.image)
     class Meta:
@@ -40,7 +40,7 @@ class NewsArticle(models.Model):
     publish = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now=True)
     images = models.ManyToManyField(ImagesModel)
-    key_words = models.ManyToManyField(keyWord)
+    key_words = models.ManyToManyField(keyWord,blank=True)
 
     def save(self, *args, **kwargs):
         created = self.pk is None
@@ -87,3 +87,14 @@ class Advertisment(models.Model):
     class Meta:
         verbose_name = ("विज्ञापन")
         verbose_name_plural = ("विज्ञापन")
+
+class Career(models.Model):
+    name = models.CharField(max_length=200)
+    email = models.EmailField(null=True,blank=True)
+    mobile_no = models.CharField(max_length=13)
+    location = models.CharField(max_length = 200)
+    resume = models.FileField(blank=True,null=True)
+
+    def __str__(self):
+        return self.name
+    

@@ -57,3 +57,9 @@ class AdvertismentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Advertisment
         fields = '__all__'
+
+
+class CareerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Career
+        fields = '__all__'

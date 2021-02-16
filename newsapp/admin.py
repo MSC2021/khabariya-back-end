@@ -54,5 +54,6 @@ admin.site.register(Marque)
 admin.site.register(VideoNews)
 admin.site.register(Advertisment,AdvertisementAdmin)
 admin.site.register(keyWord)
+admin.site.register(Career)
 admin.site.site_header = "Khabariya Panel"
 admin.site.site_title = "Khabariya "

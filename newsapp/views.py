@@ -49,6 +49,9 @@ class AdvertismentView(generics.ListCreateAPIView):
     queryset = Advertisment.objects.all().order_by('-timestamp')
     serializer_class = AdvertismentSerializer
 
+class CareerView(generics.CreateAPIView):
+    serializer_class = CareerSerializer
+
 def PreviewView(request,id):
     try:
         news = NewsArticle.objects.get(id=id)
