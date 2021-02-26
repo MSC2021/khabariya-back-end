@@ -17,4 +17,13 @@ class NewsForm(forms.ModelForm):
                 flag = False
         if flag:
             raise ValidationError("Home or Slider category cannot be used alone please another category as well")
+        try:
+            youtube_link = self.cleaned_data.get('youtube_link')
+            for i in range(len(youtube_link)):
+                code = youtube_link[i].split("=")
+                embeddedUrl = "https://www.youtube.com/embed/"+code[1]
+                youtube_link[i] = embeddedUrl
+            self.cleaned_data['youtube_link'] = youtube_link
+        except:
+            pass
         return self.cleaned_data

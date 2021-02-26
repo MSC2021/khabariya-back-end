@@ -31,7 +31,7 @@ class NewsAppViewSet(viewsets.ReadOnlyModelViewSet):
         return queryset
 
 class VideoLinkView(generics.ListCreateAPIView):
-    queryset = NewsArticle.objects.all().exclude(youtube_link=[]).order_by('-timestamp')
+    queryset = NewsArticle.objects.all().exclude(youtube_link=None).order_by('-timestamp')
     serializer_class = VideoLinkSerializer
 
     def list(self, request, *args, **kwargs):
