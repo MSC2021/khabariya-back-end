@@ -20,8 +20,7 @@ class NewsForm(forms.ModelForm):
         try:
             youtube_link = self.cleaned_data.get('youtube_link')
             for i in range(len(youtube_link)):
-                code = youtube_link[i].split("=")
-                embeddedUrl = "https://www.youtube.com/embed/"+code[1]
+                embeddedUrl = "https://www.youtube.com/embed/"+youtube_link[i]
                 youtube_link[i] = embeddedUrl
             self.cleaned_data['youtube_link'] = youtube_link
         except:

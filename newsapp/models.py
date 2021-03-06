@@ -36,7 +36,7 @@ class NewsArticle(models.Model):
     title = models.CharField(max_length=200,verbose_name='शीर्षक')
     paragraph = models.TextField(verbose_name ='विवरण')
     category = models.ManyToManyField(Category,verbose_name='वर्ग')
-    youtube_link = ArrayField(models.URLField(blank=True),blank=True,null=True)
+    youtube_link = ArrayField(models.CharField(blank=True,max_length=100),blank=True,null=True)
     publish = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now=True)
     images = models.ManyToManyField(ImagesModel)
